@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'">
+<title>Обои с расписанием</title>
+<meta name="description" content="Личное расписание учителя в виде обоев для телефона">
+<meta name="theme-color" content="#0b1020">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Обои">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">Совиная почта</p>
+    <h1>Обои с расписанием</h1>
+  </header>
+
+  <aside id="install" class="note" hidden>
+    Чтобы появился значок: кнопка «Поделиться» в Safari → «На экран „Домой“».
+    <button id="install-close" type="button" class="link">Понятно</button>
+  </aside>
+
+  <section>
+    <label class="file-button" for="file">Выбрать Excel с расписанием</label>
+    <input id="file" class="visually-hidden" type="file" multiple
+           accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+    <p id="files" class="hint">Для недели подойдёт один файл со всеми днями или сразу несколько файлов. Файл остаётся на телефоне и никуда не отправляется.</p>
+    <p id="error" class="error" role="alert" hidden></p>
+  </section>
+
+  <section id="teacher-section" hidden>
+    <div id="teacher-pick">
+      <label for="search">Учитель</label>
+      <input id="search" type="search" placeholder="Начните вводить фамилию" autocomplete="off" autocapitalize="characters">
+      <ul id="teachers" class="teachers"></ul>
+    </div>
+    <div id="teacher-chosen" class="chosen" hidden>
+      <strong id="teacher-name"></strong>
+      <button id="teacher-change" type="button" class="link">Сменить</button>
+    </div>
+  </section>
+
+  <section id="options" hidden>
+    <span class="label" id="period-label">На какой срок</span>
+    <div id="periods" class="chips" role="group" aria-labelledby="period-label"></div>
+
+    <label for="greet">Обращение</label>
+    <input id="greet" type="text" autocomplete="off">
+    <p id="greet-note" class="warn" hidden>Проверьте склонение: по инициалам не определить, мужчина это или женщина.</p>
+
+    <label id="date-label" for="date">Дата</label>
+    <input id="date" type="text" autocomplete="off">
+  </section>
+
+  <section id="notes" class="note" hidden></section>
+
+  <section id="result" hidden>
+    <img id="preview" alt="Предпросмотр обоев">
+    <p id="empty" class="hint" hidden>В этот день уроков нет.</p>
+    <button id="save" type="button" class="primary" disabled>Сохранить картинку</button>
+    <p class="hint">В меню выберите «Сохранить изображение». Потом откройте её в «Фото»: «Поделиться» → «Сделать обоями». Можно и просто удерживать палец на картинке.</p>
+    <p id="status" class="ok" role="status"></p>
+  </section>
+</main>
+<canvas id="canvas" hidden></canvas>
+<script src="vendor/xlsx.mini.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

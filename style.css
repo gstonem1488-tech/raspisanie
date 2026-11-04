@@ -1,0 +1,202 @@
+@font-face {
+  font-family: "Old Standard";
+  src: url(assets/fonts/OldStandard-Bold.ttf);
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --night: #0b1020;
+  --panel: #161c30;
+  --line: #333b58;
+  --text: #f1e8d4;
+  --muted: #b3ac9b;
+  --parchment: #ecdebe;
+  --wax: #96201f;
+  --wax-text: #fbe6d6;
+  --warn: #f0b35c;
+  --ok: #8fd6a4;
+  --error: #ff9c92;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--text);
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 20px) calc(env(safe-area-inset-right) + 16px)
+           calc(env(safe-area-inset-bottom) + 32px) calc(env(safe-area-inset-left) + 16px);
+}
+
+section, aside { margin-top: 20px; }
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 2px 0 0;
+  color: var(--parchment);
+  font: 700 30px/1.15 "Old Standard", Georgia, serif;
+}
+
+label, .label {
+  display: block;
+  margin: 16px 0 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+section > :first-child label, section > label:first-child, section > .label:first-child { margin-top: 0; }
+
+input[type="text"], input[type="search"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 16px; /* меньше 16px — и Safari приближает страницу при вводе */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button, .file-button { font: inherit; cursor: pointer; }
+
+.file-button, .primary {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  margin: 0;
+  padding: 13px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--wax);
+  color: var(--wax-text);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.primary:disabled { opacity: .55; }
+
+input:focus-visible, button:focus-visible, #file:focus-visible + * { outline: 2px solid var(--parchment); outline-offset: 2px; }
+.file-button:focus-within { outline: 2px solid var(--parchment); outline-offset: 2px; }
+
+.link {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--parchment);
+  text-decoration: underline;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+.warn { margin: 6px 0 0; color: var(--warn); font-size: 14px; }
+.ok { margin: 8px 0 0; color: var(--ok); font-size: 14px; overflow-wrap: anywhere; }
+.ok:empty { display: none; }
+.error { margin: 10px 0 0; color: var(--error); overflow-wrap: anywhere; }
+
+.note {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.note ul { margin: 4px 0 0; padding-left: 18px; }
+
+.teachers {
+  max-height: 264px;
+  margin: 8px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.teachers li + li { border-top: 1px solid var(--line); }
+
+.teachers button {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  text-align: left;
+}
+
+.teachers .none { padding: 12px; color: var(--muted); }
+
+.chosen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chips button {
+  min-width: 52px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--panel);
+  color: var(--text);
+}
+
+.chips button[aria-pressed="true"] {
+  border-color: var(--parchment);
+  background: var(--parchment);
+  color: #2c1d10;
+  font-weight: 600;
+}
+
+#preview {
+  display: block;
+  width: min(78vw, 340px);
+  aspect-ratio: 1170 / 2532;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  background: var(--panel);
+  /* разрешаем системное меню «Сохранить в Фото» по удержанию */
+  -webkit-touch-callout: default;
+}
+
+[hidden] { display: none !important; }
